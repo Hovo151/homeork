@@ -95,24 +95,64 @@ public class DynamicArray {
 
     //մասիվից ջնջում ենք տված value-ին հավասար բոլոր էլեմենտները
     public void deleteByValue(int value) {
+        int x = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                x++;
+            }
+        }
+        for (int j = 0; j < x; j++) {
+            deleteByValueFirst(value);
+        }
 
     }
 
 
     //մասիվից ջնջում ենք տված value-ին հավասար միայն առաջին էլեմենտները։ Այսինքն եթե ասում ենք ջնջի 23 թիվը, ու մասիվում ունենք 2 և ավել 23-ներ, կջնջի միայն առաջինը։
     public void deleteByValueFirst(int value) {
+        int[] delet = new int[size - 1];
+        for (int i = 0; i < delet.length; i++) {
+            delet[i] = array[i];
+            if (array[i] == value) {
+                for (int j = i; j < delet.length; j++) {
+                    delet[j] = array[j + 1];
+                }
+                break;
+            }
+        }
+        size--;
+        array = delet;
 
     }
+
 
     //մասիվից կկտրի ու կստանա փոքր մասիվ ըստ startIndex-ի և endIndex-ի, որն էլ կվերադարձնենք, տեստի մեջ կտպենք
     public int[] subArray(int startIndex, int endIndex) {
-        return null;
+        int x = 0;
+        int subArray[] = new int[endIndex - startIndex + 1];
+        for (int i = startIndex; i <= endIndex; i++) {
+            subArray[x] = array[i];
+
+        }
+        return subArray;
+
+
     }
+
 
     //մասիվից կկտրի ու կստանա փոքր մասիվ ըստ startIndex-ի և մինչև վերջին էլեմենտի, որն էլ կվերադարձնենք, տեստի մեջ կտպենք
     public int[] subArray(int startIndex) {
-        return null;
+
+        int x = 0;
+        int subArray1[] = new int[startIndex];
+        for (int i = 0; i < startIndex; i++) {
+            subArray1[x] = array[i];
+            x++;
+        }
+        return subArray1;
+
     }
+
 }
 
 
